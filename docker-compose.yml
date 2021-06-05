@@ -1,0 +1,15 @@
+version: '2'
+services:
+  jenkins:
+    hostname: jenkins.local
+    container_name: jenkins
+    build: .
+    # image: krkr/jks
+    env_file:
+      - ./jks.env
+    ports:
+      - 8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./init.groovy.d:/var/jenkins_home/init.groovy.d
+      # - ./jenkins_home:/var/jenkins_home

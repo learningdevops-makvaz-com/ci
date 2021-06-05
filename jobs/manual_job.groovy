@@ -6,7 +6,10 @@ pipelineJob('job-dsl-artifactory-pipeline-example') {
     definition {
         cps {
             script('''
-	    sh 'echo hello world!'
+	    node()
+	    {
+	      sh 'echo hello world!'
+	    }
 	    ''')
             sandbox()
         }

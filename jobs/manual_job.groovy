@@ -3,7 +3,7 @@ pipelineJob('manual_job') {
         cps {
             script('''
 	    node(){
-	      sh 'hello'
+	      sh 'echo hello world'
 	    }
 	    ''')
             sandbox()

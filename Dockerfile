@@ -32,7 +32,8 @@ RUN /usr/local/bin/install-plugins.sh \
     mailer:1.34 \
     buildtriggerbadge:2.9 \
     git:4.7.2 \
-    job-dsl:1.77
+    job-dsl:1.77 \
+    ansicolor:1.0.0
 
 
 ENTRYPOINT ["/docker-entrypoint.sh"]

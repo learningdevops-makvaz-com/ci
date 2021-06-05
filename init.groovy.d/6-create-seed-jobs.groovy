@@ -19,13 +19,13 @@ jenkins = Jenkins.instance;
 jobName = "z_seed-jobs";
 branch = "*/master"
 
-jenkins.items.findAll { job -> job.name == jobName }
-  .each { job -> job.delete() }
+// jenkins.items.findAll { job -> job.name == jobName }
+//   .each { job -> job.delete() }
 
 gitTrigger = new SCMTrigger("H * * * *");
 dslBuilder = new ExecuteDslScripts()
 
-dslBuilder.setTargets("**/*.groovy")
+dslBuilder.setTargets("**/jobs/*.groovy")
 dslBuilder.setUseScriptText(false)
 dslBuilder.setIgnoreExisting(false)
 dslBuilder.setIgnoreMissingFiles(false)

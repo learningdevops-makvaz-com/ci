@@ -1,13 +1,12 @@
-pipeline {
-    agent any
+pipelineJob('job-dsl-artifactory-pipeline-example') {
     parameters {
-        string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
+        stringParam('SERVER_ID', SERVER_ID, 'Enter Artifactory server ID')
     }
-    stages {
-        stage('Example') {
-            steps {
-                echo "${params.Greeting} World!"
-            }
+
+    definition {
+        cps {
+            script(readFileFromWorkspace('jenkins-examples/pipeline-examples/scripted-examples/declarative-example/Jenkinsfile'))
+            sandbox()
         }
     }
 }

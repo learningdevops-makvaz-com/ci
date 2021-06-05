@@ -33,4 +33,5 @@ pipelineJob('manual_job') {
             ''')
         }
  
+  }
 }

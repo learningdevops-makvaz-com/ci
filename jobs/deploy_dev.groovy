@@ -8,8 +8,7 @@ node()
       checkout(scm: [
 	  $class: 'GitSCM',
 	  branches: [
-	  [name: "refs/tags/${params.GIT_BRANCH}"],
-	  ],
+	  [name: "refs/tags/${params.plugin_version}"],],
 	  userRemoteConfigs: [
 	  [
 	  url: params.GIT_URL,

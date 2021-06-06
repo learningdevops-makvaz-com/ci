@@ -1,23 +1,19 @@
 node()
 {
-  // stage('Checkout repository') {
-  //   git url: 'https://github.com/korney4eg/thank-after-post-plugin/'
-
-  // }
   stage("Checkout repository") {
-      checkout(scm: [
-	  $class: 'GitSCM',
-	  branches: [
-	  [name: "refs/tags/${params.plugin_version}"],],
-	  userRemoteConfigs: [
-	  [
-	  url: params.git_url,
-	  ],
-	  ],
-      ])
+    checkout(scm: [
+        $class: 'GitSCM',
+        branches: [
+        [name: "refs/tags/${params.plugin_version}"],],
+        userRemoteConfigs: [
+        [
+        url: params.git_url,
+        ],
+        ],
+    ])
   }
-  stage('build wordpress image with needed version of plugin') {
-    echo 'In this step you should checkout your repository from task 02 phase 02. Build docker image for wordpress with tag = plugin version. '
+  stage('build_wp_image') {
+    echo 'In this step you should checkout your repository from one of your previous tasks. Build docker image for wordpress with tag = plugin version. Plugin should be downloaded `git_url` repo.'
     sh 'echo I am doing noting'
   }
   stage('deploy dev enivronment') {

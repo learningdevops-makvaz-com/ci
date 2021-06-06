@@ -4,12 +4,14 @@ services:
     hostname: jenkins.local
     container_name: jenkins
     build: .
-    # image: krkr/jks
     env_file:
-      - ./jks.env
+      - .env
     ports:
       - 8080:8080
     volumes:
+      # this line gives access to your local docker enironment for jenkins
       - /var/run/docker.sock:/var/run/docker.sock
+      # share initial scripts to setup jenkins
       - ./init.groovy.d:/var/jenkins_home/init.groovy.d
+      # jenkins home folder
       # - ./jenkins_home:/var/jenkins_home

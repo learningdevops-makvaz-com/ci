@@ -1,4 +1,4 @@
-pipelineJob('manual_job') {
+pipelineJob('deploy_dev') {
   definition {
     cpsScm {
       scm{

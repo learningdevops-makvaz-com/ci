@@ -19,8 +19,8 @@ jenkins = Jenkins.instance;
 jobName = "z_seed-jobs";
 branch = "*/master"
 
-jenkins.items.findAll { job -> job.name == jobName }
-  .each { job -> job.delete() }
+// jenkins.items.findAll { job -> job.name == jobName }
+//   .each { job -> job.delete() }
 
 gitTrigger = new SCMTrigger("H * * * *");
 dslBuilder = new ExecuteDslScripts()

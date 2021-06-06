@@ -5,7 +5,6 @@ node()
 
   // }
   stage("Checkout repository") {
-    steps {
       checkout(scm: [
 	  $class: 'GitSCM',
 	  branches: [
@@ -17,7 +16,6 @@ node()
 	  ],
 	  ],
       ])
-    }
   }
   stage('count number of sudo commands') {
     sh 'ls -l'

@@ -1,17 +1,9 @@
 node()
 {
-  stage('Checkout repository') {
-    git url: 'https://github.com/korney4eg/thank-after-post-plugin/'
-      checkout([
-	  $class: 'GitSCM',
-	  userRemoteConfigs: [[
-	  url: '...',
-	  credentialsId: '...'
-	  ]],
-	  branches: [ [name: '*/master'] ]
-      ])
+  // stage('Checkout repository') {
+  //   git url: 'https://github.com/korney4eg/thank-after-post-plugin/'
 
-  }
+  // }
   stage("Checkout repository") {
     steps {
       checkout(scm: [

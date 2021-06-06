@@ -1,8 +1,11 @@
 pipelineJob('manual_job') {
     definition {
-        cps {
-            script(readFileFromWorkspace('jobs/manual_job.groovy'))
-            sandbox()
+        cpsScm {
+	    scm(
+	      git(env.SEED_JOBS_URL, 'master)
+	      // git('github.com/learningdevops-makvaz-com/phase01_task03', 'master)
+	    )
+            scriptPath('jobs/manual_job.groovy')
         }
     }
 }

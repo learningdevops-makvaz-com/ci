@@ -11,7 +11,7 @@ node()
 	  [name: "refs/tags/${params.plugin_version}"],],
 	  userRemoteConfigs: [
 	  [
-	  url: params.GIT_URL,
+	  url: params.git_url,
 	  ],
 	  ],
       ])

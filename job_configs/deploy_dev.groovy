@@ -8,10 +8,7 @@ pipelineJob('deploy_dev') {
     }
   }
   parameters {
-    gitParam('plugin_version'){
-      description('version of thank-after-post plugin. Get from git tags')
-	sortMode('DESCENDING_SMART')
-	type('TAG')
-    }
+    stringParam('plugin_version', 'v0.10.0', 'thank-after-post plugin version. Got from git tag.')
+    stringParam('git_url', 'https://github.com/korney4eg/thank-after-post-plugin/', 'thank-after-post plugin repo url')
   }
 }

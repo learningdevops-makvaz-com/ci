@@ -7,4 +7,7 @@ pipelineJob('first_job') {
 	    }
         }
     }
+    parameters {
+      stringParam('git_url', 'https://github.com/danpaldev/phase02_task04', 'main repo url')
+    }
 }

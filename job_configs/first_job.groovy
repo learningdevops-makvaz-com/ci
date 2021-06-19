@@ -1,4 +1,3 @@
-
 pipelineJob('first_job') {
     definition {
         cpsScm {
@@ -8,7 +7,4 @@ pipelineJob('first_job') {
 	    }
         }
     }
-    parameters{
-      stringParam('git_url', 'https://github.com/danpaldev/thank-after-post-plugin', 'thank-after-post plugin repo url')
-      stringParam('plugin_version', 'v0.10.0', 'thank-after-post plugin version. Got from git tag.')    }
 }

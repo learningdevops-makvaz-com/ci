@@ -1,4 +1,3 @@
-
 pipelineJob('deploy_dev') {
   definition {
     cpsScm {

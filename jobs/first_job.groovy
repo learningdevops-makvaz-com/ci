@@ -1,5 +1,5 @@
 // @Field def OK = "Hola a todos"
-@Field def LATEST_TAG = sh(returnStdout: true, script: "git tag --sort version:refname | tail -1").trim()
+LATEST_TAG = sh(returnStdout: true, script: "git tag --sort version:refname | tail -1").trim()
 // def bar = "Hola Mundo"
 
 node()

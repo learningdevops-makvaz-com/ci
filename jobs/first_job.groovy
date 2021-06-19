@@ -1,8 +1,7 @@
+OK="ahjdklaeijdks"
 node()
 {
   stage('Probando probando'){
-    echo "Funciono"
-    
-
+    echo OK 
   }
 }

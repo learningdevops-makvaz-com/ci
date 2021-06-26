@@ -10,8 +10,8 @@ node()
     //   url: params.git_url
     // sh(returnStdout: true, script: "git tag --sort version:refname | tail -1").trim()
     git url: params.git_url
-    sh("pwd")
-    sh("ls")
+    sh "pwd"
+    sh "ls"
     // lastCommiterEmail
   }
 }

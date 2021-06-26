@@ -3,7 +3,7 @@ pipeline {
      stages {
           stage("Hello") {
                steps {
-                    echo "params.git_url"
+                    echo params.git_url
                     sleep 10 // 5 minutes
                     echo 'Hello World'
     //                 checkout([$class: 'GitSCM', branches: [[name: v3 ]],

@@ -6,11 +6,12 @@ pipeline {
                     echo params.git_url
                     sleep 10 // 5 minutes
                     echo 'Hello World'
-    //                 checkout([$class: 'GitSCM', branches: [[name: v3 ]],
-    //  doGenerateSubmoduleConfigurations: false, 
-    //  extensions: [[$class: 'CloneOption', 
-    //  depth: 0, 
-    //  noTags: false )
+                    //Everything above this works
+                    checkout( [$class: 'GitSCM', branches: [[name: 'v3' ]],
+                        doGenerateSubmoduleConfigurations: false, 
+                        extensions: [[$class: 'CloneOption', 
+                        depth: 0, 
+                        noTags: false ]] ] )
 
                }
           }

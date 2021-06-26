@@ -17,7 +17,7 @@ pipelineJob('first_job') {
     
     parameters {
       stringParam('git_url', 'https://github.com/danpaldev/phase02_task04.git', 'main repo url')
-      versionTag('versionTag', 'v3','commit tag')
+      stringParam('versionTag', 'v3','commit tag')
 
     }
 

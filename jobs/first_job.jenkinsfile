@@ -14,6 +14,8 @@ pipeline {
                         depth: 0, 
                         noTags: false ]] ] )
 
+                    git log --format=format:%s -1
+
                }
           }
      }

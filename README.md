@@ -56,5 +56,20 @@ Maybe, eventually we will be able to use pipeline to fully control Jenkins (secu
 
 [Visit this link to see examples of using JobDSL + Pipeline job ](https://stackoverflow.com/a/40468185/13954598)
 
+---
+
+## Useful misc stuff
+
+  * Pushing **commit** and **tag** simultaneosly
+    1. Commit your changes 
+    2. Create tag ```git tag <tag_name>```
+ 
+    3. ```git push --atomic origin <branch name> <tag>```
+
+  <br>
+
+  * [Validating Jenkinsfile syntax on VSCode](https://www.jenkins.io/blog/2018/11/07/Validate-Jenkinsfile/)
+  <br> 
+  
 
 

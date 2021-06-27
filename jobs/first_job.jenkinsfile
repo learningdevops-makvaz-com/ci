@@ -8,7 +8,7 @@ pipeline {
                     echo 'Hello World'
                     script{
                          //Getting latest tag on git - https://stackoverflow.com/a/7261049
-                         env.GIT_LATEST_TAG = sh (returnStdout:  true, script: 'git tag --sort=-creatordate | head -n 1').trim()
+                         env.GIT_LATEST_TAG = sh (returnStdout:  true, script: 'git tag --sort=-creatordate).trim()
                     }
                     //Checkout based on tag - https://stackoverflow.com/a/62611390/13954598
                     checkout( [$class: 'GitSCM', branches: [[name: params.versionTag ]],

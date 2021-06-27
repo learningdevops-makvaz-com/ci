@@ -70,6 +70,30 @@ Maybe, eventually we will be able to use pipeline to fully control Jenkins (secu
 
   * [Validating Jenkinsfile syntax on VSCode](https://www.jenkins.io/blog/2018/11/07/Validate-Jenkinsfile/)
   <br> 
+
+  ---
+  
+  ### Creating Environment Variables for docker compose file
+
+  1. Use a ```.env``` file to store the variables and reference it in the docker compose file: 
+  ``` 
+  env_file:
+    - .env
+  ``` 
+  2. Create the variables in your shell (useful when you don't want to commit secret values): 
+     *  ``` $ export SECRET=VALUE```
+     *  On the compose file reference it like this:
+        ```
+        environment:
+        SECRET: "${SECRET}"
+        ```
+     * To see if your shells variables were correctly "loaded" in your compose file, execute:
+       * ``` docker compose config```
+       * This command will print your compose file with all the values loaded.
+  
+  [Inspiration](https://ypereirareis.github.io/blog/2019/10/28/why-you-should-split-env-file-with-docker-compose-docker-swarm-stack-and-services/)
+
+  [Source on official docks](https://docs.docker.com/compose/environment-variables/)
   
 
 

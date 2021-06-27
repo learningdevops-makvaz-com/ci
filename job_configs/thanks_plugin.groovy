@@ -2,8 +2,8 @@ pipelineJob('thanks_plugin') {
     definition {
       cpsScm {
         scm {
-          git('https://github.com/danpaldev/thank-after-post-plugin', 'master')
-          scriptPath('jobs/thanks_plugin.jenkinsfile')
+           git('https://github.com/danpaldev/thank-after-post-plugin', 'master')
+           scriptPath('Jenkinsfile')
           }
       }
     }

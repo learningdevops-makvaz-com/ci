@@ -10,11 +10,11 @@ pipeline {
                     }
                     
                     //Checkout based on tag - https://stackoverflow.com/a/62611390/13954598
-                    checkout( [$class: 'GitSCM', branches: [[name: env.GIT_LATEST_TAG ]],
-                        doGenerateSubmoduleConfigurations: false, 
-                        extensions: [[$class: 'CloneOption', 
-                        depth: 0, 
-                        noTags: false ]] ] )
+                    // checkout( [$class: 'GitSCM', branches: [[name: env.GIT_LATEST_TAG ]],
+                    //     doGenerateSubmoduleConfigurations: false, 
+                    //     extensions: [[$class: 'CloneOption', 
+                    //     depth: 0, 
+                    //     noTags: false ]] ] )
 
                }
           }

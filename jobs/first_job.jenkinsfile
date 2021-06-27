@@ -6,8 +6,7 @@ pipeline {
                     echo params.git_url
                     sleep 10 // 5 minutes
                     echo 'Hello World'
-                    //Everything above this works
-                    //This branch checkout apparently works
+                    //Checkout based on tag - https://stackoverflow.com/a/62611390/13954598
                     checkout( [$class: 'GitSCM', branches: [[name: params.versionTag ]],
                         doGenerateSubmoduleConfigurations: false, 
                         extensions: [[$class: 'CloneOption', 
@@ -19,6 +18,8 @@ pipeline {
 
                     script {
                          env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
+                         //Getting latest tag on git - https://stackoverflow.com/a/7261049
+                         env.GIT_LATEST_TAG = sh(script: 'git describe --tags --abbrev=0', returnStdout: true)
                     } 
 
                }
@@ -26,6 +27,7 @@ pipeline {
           stage('get_commit_msg') {
                steps {
                     echo env.GIT_COMMIT_MSG
+                    echo env.GIT_LATEST_TAG
                }
           }
      }

@@ -6,6 +6,10 @@ pipeline {
                     echo params.git_url
                     sleep 10 // 5 minutes
                     echo 'Hello World'
+                    script{
+                         //Getting latest tag on git - https://stackoverflow.com/a/7261049
+                         env.GIT_LATEST_TAG = sh (returnStdout:  true, script: 'git tag --sort=-creatordate | head -n 1').trim()
+                    }
                     //Checkout based on tag - https://stackoverflow.com/a/62611390/13954598
                     checkout( [$class: 'GitSCM', branches: [[name: params.versionTag ]],
                         doGenerateSubmoduleConfigurations: false, 
@@ -17,9 +21,7 @@ pipeline {
                     echo env.GITHUB_USER
 
                     script {
-                         env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
-                         //Getting latest tag on git - https://stackoverflow.com/a/7261049
-                         env.GIT_LATEST_TAG = sh(returnStdout:  true, script: "git tag --sort=-creatordate | head -n 1").trim()
+                         env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()   
                     } 
 
                }

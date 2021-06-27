@@ -15,6 +15,7 @@ pipeline {
                         noTags: false ]] ] )
 
                     echo env.ADMIN_USERNAME
+                    echo env.GITHUB_USER
 
                }
           }

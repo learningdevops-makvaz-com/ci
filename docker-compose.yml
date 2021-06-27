@@ -4,6 +4,8 @@ services:
     hostname: jenkins.local
     container_name: jenkins
     build: .
+    environment:
+      GITHUB_USER: "${GITHUB_USER}"
     env_file:
       - .env
     ports:

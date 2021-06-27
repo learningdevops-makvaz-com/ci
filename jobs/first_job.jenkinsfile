@@ -17,6 +17,15 @@ pipeline {
                     echo env.ADMIN_USERNAME
                     echo env.GITHUB_USER
 
+                    script {
+                         env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
+                    } 
+
+               }
+          }
+          stage('get_commit_msg') {
+               steps {
+                    echo env.GIT_COMMIT_MSG
                }
           }
      }

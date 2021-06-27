@@ -91,9 +91,15 @@ Maybe, eventually we will be able to use pipeline to fully control Jenkins (secu
        * ``` docker compose config```
        * This command will print your compose file with all the values loaded.
   
+  3. Create a personal .env, don't git-track it, and indicate it when running the compose file:
+     * ```$ docker compose --env-file ".personal.env" up```
+     * NOTE THAT THE ```--env-file``` FLAG GOES BEFORE ```up```
+  
   [Inspiration](https://ypereirareis.github.io/blog/2019/10/28/why-you-should-split-env-file-with-docker-compose-docker-swarm-stack-and-services/)
 
   [Source on official docks](https://docs.docker.com/compose/environment-variables/)
   
+---
+
 
 

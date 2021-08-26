@@ -3,7 +3,7 @@ pipelineJob('thanks_plugin') {
       cpsScm {
         scm {
           git('https://github.com/danpaldev/phase02_task04', 'master')
-          scriptPath('jobs/thanks_plugin.jenkinsfile'))
+          scriptPath('jobs/thanks_plugin.jenkinsfile')
           }
       }
     }

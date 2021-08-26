@@ -36,7 +36,7 @@ pipeline {
 
           stage('Try to run manual job'){
                steps{
-                 build 'manual_job'
+                 build 'thanks_plugin'
                }
           }
      }

@@ -33,5 +33,9 @@ pipeline {
                     echo env.GIT_LATEST_TAG
                }
           }
+
+          stage('Try to run manual job'){
+               build 'manual_job'
+          }
      }
 }

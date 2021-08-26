@@ -35,7 +35,9 @@ pipeline {
           }
 
           stage('Try to run manual job'){
-               build 'manual_job'
+               steps{
+                 build 'manual_job'
+               }
           }
      }
 }

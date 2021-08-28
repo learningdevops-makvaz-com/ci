@@ -19,6 +19,10 @@ COPY init.groovy.d /usr/share/jenkins/ref/init.groovy.d
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
+RUN mkdir -p /usr/share/jenkins/keys
+
+COPY git_ssh_private_key /usr/share/jenkins/keys
+
 # Plugins
 RUN /usr/local/bin/install-plugins.sh \
     workflow-aggregator:2.5 \

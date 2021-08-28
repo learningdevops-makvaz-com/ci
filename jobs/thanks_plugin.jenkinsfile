@@ -1,16 +1,8 @@
 pipeline {
      agent any
      stages {
-          stage('Checkout to plugin repo'){
+          stage('Checkout to plugin repo') {
                steps {
-                    // checkout( [$class: 'GitSCM', branches: [[name: '*/master' ]],
-                    //      doGenerateSubmoduleConfigurations: false,
-                    //      extensions: [[$class: 'CloneOption', 
-                    //      depth: 0, 
-                    //      noTags: false ]]
-                    //      submoduleCfg: [],
-                    //      userRemoteConfigs: [[url: params.git_url]]
-                    //       ])
                     git branch: 'master', url: params.git_url
                }
 
@@ -41,40 +33,18 @@ pipeline {
                     sh 'echo $FINAL_TAG_VERSION'
                }
           
-              
           }
 
-          stage('Pushing New Tag'){
+          stage('Pushing New Tag') {
               steps{
                sh 'git tag $FINAL_TAG_VERSION'
                sh 'git push https://$GITHUB_USER:$GITHUB_PASS@github.com/danpaldev/thank-after-post-plugin.git $FINAL_TAG_VERSION'
               }
           }
 
-          stage("Triggering external repo"){
-               steps{          
-                 dir("Switch to phase02 repo"){
-                    git url: 'https://github.com/danpaldev/phase02_task02.git'
-                 }
-
-                 // Ok... The repo switching works.
-                    // Now I have to find HOW TO TRIGGER A JENKINSFILE PIPELINE FROM THIS EXTERNAL REPO
-                    // Try this - https://bit.ly/3rOIwsN
-
-               //    build job: 'Testing Jenkinsfile'
-                 sh script: "ls", returnStdout: true
-               }
-          }
+          //TODO -> Find out how to generate (and inject) git credentials programatically using Jenkinds cred-ids
           
-          //Invoking another PipelineB from PipelineA (current one)
-            //https://bit.ly/3x1z1Zj
-     //      stage ('Invoke PipelineB') {
-     //        steps {
-     //            build job: 'pipelineA', parameters: [
-     //            string(name: 'param1', value: "value1")
-     //            ]
-     //        }
-     //    }
-
+          //ACHIEVEMENT -> Now I can checkout to git repos other than 'task04'
+            // This is what Alex intended me to do.
      }
 }

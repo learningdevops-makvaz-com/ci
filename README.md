@@ -6,6 +6,47 @@ Pipeline provides an extensible set of tools **for modeling simple-to-complex de
 [Source](https://www.jenkins.io/doc/book/pipeline/)
 
 [See Docs for Pipeline DSL syntax](https://www.jenkins.io/doc/book/pipeline/syntax/)
+### Diffeence between a Pipeline and a Job?
+
+Well, as stated above, a Pipeline is just a set of plugins used to make CI/CD possible. However, the **pipeline's instruction must be inside a Jenkins Job**
+
+i.e. Pipelines have a DSL that only works inside a Job (A PIPELINE JOB).
+
+### Job vs Project?
+
+In Jenkins, both terms are used interchangeably.
+
+### Difference between a Pipeline Job and a Freestyle Job (Project)?
+
+Pipeline offers the ability to **break our jobs into different stages** and with a more cleaner syntax.
+
+Example of Freestyle Project.
+```
+// execute freestyle project A with parameter p1=a
+// execute freestyle project B with parameter p2=b
+if((A finished successfully) && (B finished successfully)){
+    // execute project C with parameter p3=c
+    if((C finished successfully) && p4 == "yes"){
+        // execute project D with parameter p5=d 
+    }
+}
+```
+
+Example of a Pipeline Job that triggers more jobs (with parameters)
+```
+stage('triggering jobs') {
+    build job: 'A', parameters: [string(name: 'p1', value: 'a')]
+    build job: 'B', parameters: [string(name: 'p2', value: 'b')]
+    build job: 'C', parameters: [string(name: 'p3', value: 'c')]
+    if (p4 == 'yes') {
+        build job: 'D', parameters: [string(name: 'p5', value: 'd')]
+    }
+}
+
+```
+
+[Source](https://stackoverflow.com/a/45622559)
+
 
 ---
 

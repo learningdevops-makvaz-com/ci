@@ -3,7 +3,10 @@ pipeline {
      stages {
           stage('Checkout to plugin repo') {
                steps {
-                    git branch: 'master', credentialsId: 'git-auth' , url: params.git_url
+                    // git branch: 'master', credentialsId: 'git-auth' , url: params.git_url
+                    checkout([$class: 'GitSCM', branches: [[name: '*/master']],
+                    userRemoteConfigs: [[url: params.git_url,
+                    credentialsId: 'git-auth']]])
                }
           }
 

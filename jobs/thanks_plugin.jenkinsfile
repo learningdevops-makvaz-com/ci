@@ -6,7 +6,7 @@ pipeline {
                     // git branch: 'master', credentialsId: 'git-auth' , url: params.git_url
                     checkout([$class: 'GitSCM', branches: [[name: '*/master']],
                     userRemoteConfigs: [[url: params.git_url,
-                    credentialsId: 'admin']]])
+                    credentialsId: 'git-auth2']]])
                }
           }
 

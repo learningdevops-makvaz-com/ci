@@ -9,6 +9,6 @@ pipelineJob('thanks_plugin') {
     }
     
     parameters {
-      stringParam('git_url', 'https://github.com/danpaldev/thank-after-post-plugin', 'main repo url')
+      stringParam('git_url', 'git@github.com:danpaldev/thank-after-post-plugin.git', 'main repo url')
     }
 }

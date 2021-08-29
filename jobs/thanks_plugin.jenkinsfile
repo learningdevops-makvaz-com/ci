@@ -3,10 +3,11 @@ pipeline {
      stages {
           stage('Checkout to plugin repo') {
                steps {
-                    // git branch: 'master', credentialsId: 'git-auth' , url: params.git_url
-                    checkout([$class: 'GitSCM', branches: [[name: '*/master']],
-                    userRemoteConfigs: [[url: params.git_url,
-                    credentialsId: 'git-auth2']]])
+                    git credentialsId: 'git-auth',
+                      url: params.git_url
+                    // checkout([$class: 'GitSCM', branches: [[name: '*/master']],
+                    // userRemoteConfigs: [[url: params.git_url,
+                    // credentialsId: 'git-auth2']]])
                }
           }
 
@@ -44,6 +45,9 @@ pipeline {
           }
 
          // TODO -> Switch Git to SSH and pass the SSH Key credential id. 
+           // It seems that my creds are not the problems, I created them via JobDSL and
+           // via the GUI but they aren't used!... It seems that there's
+           // something wrong with git.
 
      //ACHIEVEMENT -> Now I can checkout to git repos other than 'task04'
      // This is what Alex intended me to do.

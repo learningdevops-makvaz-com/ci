@@ -1,15 +1,20 @@
 pipeline {
      agent any
-     stages {
-          stage('Checkout to plugin repo') {
+
+      stage('Checkout to plugin repo') {
                steps {
-                    git credentialsId: git-auth,
-                      url: params.git_url
-                    // checkout([$class: 'GitSCM', branches: [[name: '*/master']],
-                    // userRemoteConfigs: [[url: params.git_url,
-                    // credentialsId: 'git-auth2']]])
+                 sshagent(credentials: ['git-auth']) {
+                   sh '''
+                    git log
+                    '''
+                 }
+               // git credentialsId: 'git-auth',
+               //   url: params.git_url
+               // checkout([$class: 'GitSCM', branches: [[name: '*/master']],
+               // userRemoteConfigs: [[url: params.git_url,
+               // credentialsId: 'git-auth2']]])
                }
-          }
+      }
 
           stage('Getting Current Tag') {
                steps {
@@ -49,7 +54,7 @@ pipeline {
            // via the GUI but they aren't used!... It seems that there's
            // something wrong with git.
 
-     //ACHIEVEMENT -> Now I can checkout to git repos other than 'task04'
-     // This is what Alex intended me to do.
-     }
+//ACHIEVEMENT -> Now I can checkout to git repos other than 'task04'
+// This is what Alex intended me to do.
+}
 }

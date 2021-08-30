@@ -1,0 +1,17 @@
+/* groovylint-disable-next-line CompileStatic */
+pipeline {
+     agent any
+     stages {
+        stage('debugging') {
+          steps {
+            echo '@@@ I work @@@'
+          }
+       }
+
+       stage('Trigger thanks-plugin job') {
+        steps {
+          build 'thanks_plugin'
+        }
+       }
+     }
+}

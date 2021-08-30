@@ -1,9 +1,9 @@
 pipelineJob('deploy_dev') {
   definition {
     cpsScm {
-      scm{
-	      git('https://github.com/danpaldev/phase02_task04', 'master')
-	      scriptPath('jobs/deploy_dev.groovy')
+      scm {
+          git('https://github.com/danpaldev/phase02_task04', 'master')
+          scriptPath('jobs/deploy_dev.groovy')
       }
     }
   }

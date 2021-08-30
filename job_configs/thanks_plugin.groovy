@@ -4,7 +4,7 @@ pipelineJob('thanks_plugin') {
       cpsScm {
         scm {
           github('danpaldev/thank-after-post-plugin', 'master', 'ssh')
-          scriptPath('thanks_plugin.jenkinsfile')
+          scriptPath('Jenkinsfile')
           }
       }
     }

@@ -6,7 +6,7 @@ pipeline {
                steps {
                  sshagent(credentials: ['git-auth']) {
                    sh '''
-                    git log
+                    git checkout "${params.git_url}"
                     '''
                  }
                // git credentialsId: 'git-auth',

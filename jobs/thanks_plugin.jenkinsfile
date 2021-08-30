@@ -1,7 +1,7 @@
 /* groovylint-disable-next-line CompileStatic */
 pipeline {
      agent any
-
+     stages{
       stage('Checkout to plugin repo') {
                steps {
                  sshagent(credentials: ['git-auth']) {
@@ -57,4 +57,5 @@ pipeline {
 
 //ACHIEVEMENT -> Now I can checkout to git repos other than 'task04'
 // This is what Alex intended me to do.
+  }
 }

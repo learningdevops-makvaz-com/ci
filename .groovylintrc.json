@@ -6,6 +6,12 @@
         },
         "DuplicateListLiteral": {
             "enabled": false
+        },
+        "DuplicateStringLiteral": {
+            "enabled": false
+        },
+        "NestedBlockDepth": {
+            "enabled": false
         }
     }
 }

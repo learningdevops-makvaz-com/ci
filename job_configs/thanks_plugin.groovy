@@ -4,9 +4,16 @@ pipelineJob('thanks_plugin') {
     definition {
       cpsScm {
         scm {
-          github('danpaldev/thank-after-post-plugin', 'master', 'ssh')
-          scriptPath('Jenkinsfile')
+          // github('danpaldev/thank-after-post-plugin', 'master', 'ssh')
+          git {
+            remote {
+              github('danpaldev/thank-after-post-plugin', 'ssh')
+              credentials('git-auth')
+            }
           }
+          // scriptPath('Jenkinsfile')
+        }
+        scriptPath('Jenkinsfile')
       }
     }
 }

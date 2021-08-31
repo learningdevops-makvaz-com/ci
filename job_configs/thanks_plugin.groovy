@@ -4,8 +4,10 @@ pipelineJob('thanks_plugin') {
       cpsScm {
         scm {
           github('danpaldev/thank-after-post-plugin', 'master', 'ssh')
+          credentials('git-auth')
           scriptPath('Jenkinsfile')
           }
       }
     }
 }
+//TODO -> Find how to use credentials in JobDSL (if possible) ?

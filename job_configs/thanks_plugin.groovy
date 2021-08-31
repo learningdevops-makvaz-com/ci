@@ -15,4 +15,3 @@ pipelineJob('thanks_plugin') {
       }
     }
 }
-//NOW CREDENTIALS WORK!

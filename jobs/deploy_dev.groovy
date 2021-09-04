@@ -27,12 +27,12 @@ node()
     //Building docker image
     dockerfile = 'Dockerfile'
     wordpressImage = docker.build(
-      "wp-jenkins:${params.PLUGIN_TAG_VERSION}",
+      "danpaldev/wp-jenkins:${strippedTagVersion}",
       "--build-arg PLUGIN_VERSION=${strippedTagVersion} -f ${dockerfile} .")
 
     // TODO -> Create credential for docker hub in order to push the build image
     docker.withRegistry('', 'dockerhub-auth') {
-      wordpressImage.push("${params.PLUGIN_TAG_VERSION}")
+      wordpressImage.push("${strippedTagVersion}")
     }
   }
   stage('deploy dev enivronment') {

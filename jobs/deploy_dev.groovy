@@ -1,20 +1,37 @@
 node()
 {
-  stage("Checkout repository") {
+
+  stage('Checkout to phase02_task02 repo') {
+    // TODO -> Checkout to phase02_task02 (Maybe I don't need to worry about git credentials
+    // because I won't modify the repository, I will just use the files inside it to do docker stuff)
     checkout(scm: [
         $class: 'GitSCM',
-        branches: [
-        [name: "refs/tags/${params.plugin_version}"],],
-        userRemoteConfigs: [
-        [
+        branches: [[name: '*/master']],
+        userRemoteConfigs: [[
         url: params.git_url,
-        ],
-        ],
+        credentialsId: 'git-auth'
+        ]],
     ])
   }
+
   stage('build_wp_image') {
-    echo 'In this step you should checkout your repository from one of your previous tasks. Build docker image for wordpress with tag = plugin version. Plugin should be downloaded `git_url` repo.'
-    sh 'echo I am doing noting'
+    // echo 'In this step you should checkout your repository from one of your previous tasks.
+    // Build docker image for wordpress with tag = plugin version
+
+    // TODO -> Strip PLUGIN_TAG_VERSION from 0.24.0 to 24 format in order to pass it as build arg to docker
+    currentTag = params.PLUGIN_TAG_VERSION
+    tagChunks = currentTag.tokenize('.')
+    strippedTagVersion = tagChunks[1] as int
+    echo "Stripped Tag Version --> ${strippedTagVersion}"
+
+    // Docker config stuff
+    // dockerfile = 'Dockerfile'
+    // wordpressImage = docker.build(
+    //   "wordpress-jenkins:${params.PLUGIN_TAG_VERSION}",
+    //   "--build-arg PLUGIN_VERSION=${strippedTagVersion} -f ${dockerfile} .")
+
+    // TODO -> Create credential for docker hub in order to push the build image
+
   }
   stage('deploy dev enivronment') {
     echo 'run docker-compose in detached mode with provided version of wordpress image'

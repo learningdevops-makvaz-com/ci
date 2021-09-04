@@ -14,7 +14,7 @@ node()
 
   stage('build_wp_image') {
 
-    //Extracting minor version from the Tag to pass the arg to Dockefile
+    //Extracting minor version from the Tag to pass the arg to Dockerfile
     currentTag = params.PLUGIN_TAG_VERSION
     tagChunks = currentTag.tokenize('.')
     strippedTagVersion = tagChunks[1] as int

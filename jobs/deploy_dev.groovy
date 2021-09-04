@@ -2,8 +2,6 @@ node()
 {
 
   stage('Checkout to phase02_task02 repo') {
-    // TODO -> Checkout to phase02_task02 (Maybe I don't need to worry about git credentials
-    // because I won't modify the repository, I will just use the files inside it to do docker stuff)
     checkout(scm: [
         $class: 'GitSCM',
         branches: [[name: '*/master']],

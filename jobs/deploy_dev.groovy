@@ -31,8 +31,8 @@ node()
       "--build-arg PLUGIN_VERSION=${strippedTagVersion} -f ${dockerfile} .")
 
     // TODO -> Create credential for docker hub in order to push the build image
-    // docker.withRegistry('', dockerhubCredentials) {
-      // wordpressImage.push("${params.PLUGIN_TAG_VERSION}")
+    docker.withRegistry('', 'dockerhub-auth') {
+      wordpressImage.push("${params.PLUGIN_TAG_VERSION}")
     }
   }
   stage('deploy dev enivronment') {

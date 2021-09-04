@@ -25,14 +25,14 @@ node()
     //Building docker image
     dockerfile = 'Dockerfile'
     wordpressImage = docker.build(
-      "danpaldev/wp-jenkins:${strippedTagVersion}",
+      "danpaldev/wp-jenkins:${params.PLUGIN_TAG_VERSION}",
       "--build-arg PLUGIN_VERSION=${strippedTagVersion} -f ${dockerfile} .")
 
     //Pushing docker image to Dockerhub
     docker.withRegistry('', 'dockerhub-auth') {
-      wordpressImage.push("${strippedTagVersion}")
+      wordpressImage.push("${params.PLUGIN_TAG_VERSION}")
     }
-    
+
   }
   stage('deploy dev enivronment') {
     echo 'run docker-compose in detached mode with provided version of wordpress image'

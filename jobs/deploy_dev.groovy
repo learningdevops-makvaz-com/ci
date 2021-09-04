@@ -15,8 +15,6 @@ node()
   }
 
   stage('build_wp_image') {
-    // echo 'In this step you should checkout your repository from one of your previous tasks.
-    // Build docker image for wordpress with tag = plugin version
 
     //Extracting minor version from the Tag to pass the arg to Dockefile
     currentTag = params.PLUGIN_TAG_VERSION
@@ -30,10 +28,11 @@ node()
       "danpaldev/wp-jenkins:${strippedTagVersion}",
       "--build-arg PLUGIN_VERSION=${strippedTagVersion} -f ${dockerfile} .")
 
-    // TODO -> Create credential for docker hub in order to push the build image
+    //Pushing docker image to Dockerhub
     docker.withRegistry('', 'dockerhub-auth') {
       wordpressImage.push("${strippedTagVersion}")
     }
+    
   }
   stage('deploy dev enivronment') {
     echo 'run docker-compose in detached mode with provided version of wordpress image'

@@ -44,3 +44,26 @@ println '@@@@@@@ Creating Git Credentials @@@@@@@'
 
     credentialsStore.addCredentials(global_domain, credentials)
 
+
+println '%%%%%%% Creating DockerHub Credentials %%%%%%%'
+
+    id_docker = 'dockerhub-auth'
+    description_docker = 'Username and Password for Dockerhub'
+    username_docker = System.getenv('DOCKERHUB_USER')
+    password_docker = System.getenv('DOCKERHUB_PASS')
+
+    /* groovylint-disable-next-line BrokenNullCheck, UnnecessaryGetter */
+    if (password_docker == null && password_docker.isEmpty()) {
+      println 'WARNING: No credentials for DockerHub were provided'
+    }
+
+    dockerCredentials = new UsernamePasswordCredentialsImpl(
+      CredentialsScope.GLOBAL,
+      id_docker,
+      description_docker,
+      username_docker,
+      password_docker,
+      )
+
+    credentialsStore.addCredentials(global_domain, dockerCredentials)
+

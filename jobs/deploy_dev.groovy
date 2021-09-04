@@ -18,19 +18,22 @@ node()
     // echo 'In this step you should checkout your repository from one of your previous tasks.
     // Build docker image for wordpress with tag = plugin version
 
+    //Extracting minor version from the Tag to pass the arg to Dockefile
     currentTag = params.PLUGIN_TAG_VERSION
     tagChunks = currentTag.tokenize('.')
     strippedTagVersion = tagChunks[1] as int
     echo "Stripped Tag Version --> ${strippedTagVersion}"
 
-    // Docker config stuff
+    //Building docker image
     dockerfile = 'Dockerfile'
     wordpressImage = docker.build(
       "wp-jenkins:${params.PLUGIN_TAG_VERSION}",
       "--build-arg PLUGIN_VERSION=${strippedTagVersion} -f ${dockerfile} .")
 
     // TODO -> Create credential for docker hub in order to push the build image
-
+    // docker.withRegistry('', dockerhubCredentials) {
+      // wordpressImage.push("${params.PLUGIN_TAG_VERSION}")
+    }
   }
   stage('deploy dev enivronment') {
     echo 'run docker-compose in detached mode with provided version of wordpress image'

@@ -36,7 +36,7 @@ node()
     // 'run docker-compose in detached mode with provided version of wordpress image'
     sh "python3 yaml_modifier.py docker-compose.yml danpaldev/wp-jenkins:${params.PLUGIN_TAG_VERSION}"
     sh 'docker-compose up -d'
-    sh 'while ! wget localhost:3306; do sleep 10; done;'
+    sh 'while ! wget localhost:80; do sleep 5; done;'
   }
 
   stage('testing') {

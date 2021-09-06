@@ -34,9 +34,10 @@ node()
   }
   stage('deploy dev enivronment') {
     // 'run docker-compose in detached mode with provided version of wordpress image'
-    // sh 'echo I am doing noting'
     sh "python3 yaml_modifier.py docker-compose.yml danpaldev/wp-jenkins:${params.PLUGIN_TAG_VERSION}"
-    sh 'cat docker-compose.yml'
+    sh 'docker-compose up --detach'
+    sh 'sleep 140'
+    sh 'curl -Is localhost:80 | head -n 1'
   }
 
   stage('testing') {

@@ -33,9 +33,12 @@ node()
 
   }
   stage('deploy dev enivronment') {
-    echo 'run docker-compose in detached mode with provided version of wordpress image'
-    sh 'echo I am doing noting'
+    // 'run docker-compose in detached mode with provided version of wordpress image'
+    // sh 'echo I am doing noting'
+    sh "python3 yaml_modifier.py docker-compose.yml danpaldev/wp-jenkins:${params.PLUGIN_TAG_VERSION}"
+    sh 'cat docker-compose.yml'
   }
+
   stage('testing') {
     echo 'run test container that you created on task02 phase 02 to check that your wordpress is running correctly and pluin is set to actual version'
     sh 'echo I am doing noting'

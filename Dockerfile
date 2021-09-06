@@ -10,6 +10,7 @@ RUN apt update && apt install -y jq make python3-pip && \
     \
     pip3 install --upgrade pip && \
     pip3 install docker-compose==1.18.0 && \
+    pip3 install ruamel.yaml==0.17.16 \
     \
     curl -sSL https://raw.githubusercontent.com/thbkrkr/doo/7911779151a06d1e7172f0f18effe2ca2435d32a/doo \
         > /usr/local/bin/doo && chmod +x /usr/local/bin/doo

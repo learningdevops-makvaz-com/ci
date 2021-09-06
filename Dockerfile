@@ -3,7 +3,7 @@ FROM jenkins/jenkins:2.296-jdk11
 USER root
 
 # Install jq, make, docker, docker-compose and doo
-RUN apt update && apt install -y jq make python3-pip && \
+RUN apt update && apt install -y jq make python3-pip wget && \
     \
     curl -sL https://download.docker.com/linux/static/edge/x86_64/docker-17.11.0-ce.tgz | tar zx && \
         mv /docker/* /bin/ && chmod +x /bin/docker* && \

@@ -1,3 +1,4 @@
 .personal.env
 git_ssh_private_key
 try.sh
+*.html*

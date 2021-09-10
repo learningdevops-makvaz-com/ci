@@ -36,7 +36,8 @@ node()
     // 'run docker-compose in detached mode with provided version of wordpress image'
     sh "python3 yaml_modifier.py docker-compose.yml danpaldev/wp-jenkins:${params.PLUGIN_TAG_VERSION}"
     sh 'docker-compose up -d'
-    sh 'while ! wget database:3306; do sleep 1; done;'
+    //TODO-> Try to use waitFor pipeline tool
+    sh 'while ! wget -q localhost:3306; do sleep 1; done;'
   }
 
   stage('testing') {

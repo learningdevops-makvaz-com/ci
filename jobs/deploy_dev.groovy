@@ -36,8 +36,12 @@ node()
     // 'run docker-compose in detached mode with provided version of wordpress image'
     sh "python3 yaml_modifier.py docker-compose.yml danpaldev/wp-jenkins:${params.PLUGIN_TAG_VERSION}"
     sh 'docker-compose up -d'
-    //TODO-> Try to use waitFor pipeline tool
-    sh 'while ! wget -q localhost:3306; do sleep 1; done;'
+    sh '''
+      until docker container exec -it phase02_task02_database_1 mysql -P 3306 -u wp_user --password=wp_password --execute="SHOW DATABASES;" | grep "wordpress" ; do
+        >&2 echo "MySQL is unavailable - waiting for it... 😴"
+        sleep 1
+      done
+    '''
   }
 
   stage('testing') {

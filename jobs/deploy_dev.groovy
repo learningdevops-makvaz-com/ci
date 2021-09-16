@@ -34,10 +34,9 @@ node()
   }
   stage('deploy dev enivronment') {
     //Deleting containers from previous task attemps
-    // sh 'docker container stop deploydev_wordpress_1 && docker container rm deploydev_wordpress_1'
-    // sh 'docker container stop deploydev_database_1 && docker container rm deploydev_database_1'
     sh 'docker-compose stop'
     sh 'docker-compose down --volumes'
+
     // 'run docker-compose in detached mode with provided version of wordpress image'
     sh "python3 yaml_modifier.py docker-compose.yml danpaldev/wp-jenkins:${params.PLUGIN_TAG_VERSION}"
     sh 'docker-compose up -d'

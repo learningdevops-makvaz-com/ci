@@ -49,18 +49,16 @@ node()
   }
 
   stage('testing') {
-    // echo 'run test container that you created on task02 phase 02 to check that your wordpress is running correctly and pluin is set to actual version'
-    // sh 'echo I am doing noting'
-    // docker.image("danpaldev/wp-testing").withRun('-e ')
     sh "docker run --network=host --rm -e WP_URL='http://localhost' -e WP_PLUGIN_VERSION=${params.PLUGIN_TAG_VERSION} danpaldev/wp-testing"
-
+    //TODO -> Add a way to exit pipeline if any ERROR message apears on stdout
   }
+
   stage('destroy dev enivronment') {
-    echo 'make docker-compose to stop and clean up after it'
-    sh 'echo I am doing noting'
-  } 
+    sh 'docker-compose down -v'
+  }
+
   stage('trigger deploy to prod pipeline') {
-    echo 'Here you need to trigger pipeline "deploy_prod" and path name of the image to docker-compose'
-    sh 'echo I am doing noting'
+    build(job: 'deploy_prod',
+    parameters: [ string(name: 'PLUGIN_TAG_VERSION', value: "${params.PLUGIN_TAG_VERSION}") ])
   }
 }

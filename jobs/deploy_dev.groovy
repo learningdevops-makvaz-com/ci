@@ -52,7 +52,7 @@ node()
     // echo 'run test container that you created on task02 phase 02 to check that your wordpress is running correctly and pluin is set to actual version'
     // sh 'echo I am doing noting'
     // docker.image("danpaldev/wp-testing").withRun('-e ')
-    sh "docker run --network=host --rm -it -e WP_URL='http://localhost' -e WP_PLUGIN_VERSION=${params.PLUGIN_TAG_VERSION} danpaldev/wp-testing"
+    sh "docker run --network=host --rm -e WP_URL='http://localhost' -e WP_PLUGIN_VERSION=${params.PLUGIN_TAG_VERSION} danpaldev/wp-testing"
 
   }
   stage('destroy dev enivronment') {

@@ -14,7 +14,7 @@ node()
   stage('deploy prod enivronment') {
     // 'run docker-compose in detached mode with provided version of wordpress image'
     sh "python3 yaml_modifier.py --prod docker-compose.yml danpaldev/wp-jenkins:${params.PLUGIN_TAG_VERSION}"
-    sh 'docker compose down -v'
+    sh 'docker-compose down -v'
     sh 'docker-compose up -d'
     sh '''
       until docker container exec deployprod_database_1 mysql -P 3306 -u wp_user --password=wp_password --execute="SHOW DATABASES;" | grep "wordpress" ; do

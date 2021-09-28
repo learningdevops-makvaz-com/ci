@@ -49,7 +49,7 @@ node()
   }
 
   stage('testing') {
-    sh "docker run --network=host --rm -e WP_URL='http://localhost:81' -e WP_PLUGIN_VERSION=${params.PLUGIN_TAG_VERSION} danpaldev/wp-testing"
+    sh "docker run --network=host --rm -e WP_URL='http://localhost:81' -e WP_PLUGIN_VERSION=${params.PLUGIN_TAG_VERSION} danpaldev/wp-testing:v2"
     //TODO -> Add a way to exit pipeline if any ERROR message apears on stdout
   }
 

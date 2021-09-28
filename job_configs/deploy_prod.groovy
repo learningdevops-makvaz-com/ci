@@ -1,4 +1,4 @@
-pipelineJob('deploy_dev') {
+pipelineJob('deploy_prod') {
   definition {
     cpsScm {
       scm {
@@ -9,7 +9,7 @@ pipelineJob('deploy_dev') {
           }
         }
       }
-      scriptPath('jobs/deploy_dev.groovy')
+      scriptPath('jobs/deploy_prod.groovy')
     }
   }
   parameters {

@@ -8,34 +8,32 @@ import com.cloudbees.plugins.credentials.domains.*
 import com.cloudbees.plugins.credentials.impl.*
 import com.cloudbees.jenkins.plugins.sshcredentials.impl.*
 
-println "--> setting ssh creds"
+println '--> setting ssh creds'
 
-def seedCredsId = System.getenv("SEED_CREDS_ID")
 
-if (seedCredsId != null) {
-  println "--> seed ssh creds id: " + seedCredsId
+println '@@@@@@@ Creating Git Credentials @@@@@@@'
 
-    def global_domain = Domain.global()
+    global_domain = Domain.global()
 
-    def credentialsStore =
+    credentialsStore =
     Jenkins.instance.getExtensionList(
-	'com.cloudbees.plugins.credentials.SystemCredentialsProvider'
-	)[0].getStore()
+    'com.cloudbees.plugins.credentials.SystemCredentialsProvider'
+    )[0].getStore()
 
-    def name = seedCredsId
-    def id = seedCredsId
-    def username = seedCredsId
-    def passphrase = "MMHAXFn3kdfa/rWXyYFYAA==" // FIXME
-    def privateKey = "/usr/share/jenkins/keys/" + seedCredsId
-    def keySource = new BasicSSHUserPrivateKey.FileOnMasterPrivateKeySource(privateKey)
-    def description = ""
+    id = 'git-auth'
+    username = 'admin'
+    passphrase = ''
+    privateKey = '/usr/share/jenkins/keys/git_ssh_private_key'
+    keySource = new BasicSSHUserPrivateKey.FileOnMasterPrivateKeySource(privateKey)
+    description = ''
 
-    def privateKeyFile = new File(privateKey)
+    privateKeyFile = new File(privateKey)
+
     if (!privateKeyFile.exists()) {
-      println "WARNING: " + privateKey + " doesn't exist"
+      println 'WARNING: ' + privateKey + " doesn't exist"
     }
 
-  def credentials = new BasicSSHUserPrivateKey(
+   credentials = new BasicSSHUserPrivateKey(
       CredentialsScope.GLOBAL,
       id,
       username,
@@ -45,4 +43,27 @@ if (seedCredsId != null) {
       )
 
     credentialsStore.addCredentials(global_domain, credentials)
-}
+
+
+println '%%%%%%% Creating DockerHub Credentials %%%%%%%'
+
+    id_docker = 'dockerhub-auth'
+    description_docker = 'Username and Password for Dockerhub'
+    username_docker = System.getenv('DOCKERHUB_USER')
+    password_docker = System.getenv('DOCKERHUB_PASS')
+
+    /* groovylint-disable-next-line BrokenNullCheck, UnnecessaryGetter */
+    if (password_docker == null && password_docker.isEmpty()) {
+      println 'WARNING: No credentials for DockerHub were provided'
+    }
+
+    dockerCredentials = new UsernamePasswordCredentialsImpl(
+      CredentialsScope.GLOBAL,
+      id_docker,
+      description_docker,
+      username_docker,
+      password_docker,
+      )
+
+    credentialsStore.addCredentials(global_domain, dockerCredentials)
+

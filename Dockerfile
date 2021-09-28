@@ -3,13 +3,14 @@ FROM jenkins/jenkins:2.296-jdk11
 USER root
 
 # Install jq, make, docker, docker-compose and doo
-RUN apt update && apt install -y jq make python3-pip && \
+RUN apt update && apt install -y jq make python3-pip wget && \
     \
     curl -sL https://download.docker.com/linux/static/edge/x86_64/docker-17.11.0-ce.tgz | tar zx && \
         mv /docker/* /bin/ && chmod +x /bin/docker* && \
     \
     pip3 install --upgrade pip && \
     pip3 install docker-compose==1.18.0 && \
+    pip3 install ruamel.yaml==0.17.16 && \
     \
     curl -sSL https://raw.githubusercontent.com/thbkrkr/doo/7911779151a06d1e7172f0f18effe2ca2435d32a/doo \
         > /usr/local/bin/doo && chmod +x /usr/local/bin/doo
@@ -18,6 +19,10 @@ RUN apt update && apt install -y jq make python3-pip && \
 COPY init.groovy.d /usr/share/jenkins/ref/init.groovy.d
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
+
+RUN mkdir -p /usr/share/jenkins/keys
+
+COPY git_ssh_private_key /usr/share/jenkins/keys
 
 # Plugins
 RUN /usr/local/bin/install-plugins.sh \

@@ -4,6 +4,9 @@ services:
     hostname: jenkins.local
     container_name: jenkins
     build: .
+    environment:
+      DOCKERHUB_USER: "${DOCKERHUB_USER}" 
+      DOCKERHUB_PASS: "${DOCKERHUB_PASS}"
     env_file:
       - .env
     ports:
